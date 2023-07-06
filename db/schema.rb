@@ -15,8 +15,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_05_142358) do
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "link_id", null: false
+    t.integer "link_id"
+    t.integer "user_id"
     t.index ["link_id"], name: "index_comments_on_link_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "links", force: :cascade do |t|
@@ -35,5 +37,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_05_142358) do
   end
 
   add_foreign_key "comments", "links"
+  add_foreign_key "comments", "users"
   add_foreign_key "links", "users"
 end
